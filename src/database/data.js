@@ -7,7 +7,10 @@ export const getPodcasterList = async () => {
 
     const apiPodcastList = JSON.parse(data.contents)
 
-    const podcastList = apiPodcastList.feed.entry.map((podcaster) => {
+    if(!apiPodcastList) return []; 
+
+    let entries = apiPodcastList.feed.entry;
+    return entries.map((podcaster) => {
         return {
             id: podcaster["id"]["attributes"]["im:id"],
             summary: podcaster["summary"]["label"],
@@ -16,8 +19,7 @@ export const getPodcasterList = async () => {
             title: podcaster["im:name"]["label"]
         }
     })
-
-    return podcastList
+   
 }
 
 
