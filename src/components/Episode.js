@@ -17,7 +17,6 @@ export const Episode = () => {
             <div className='flex flex-col p-4 h-min mt-10 mr-20 shadow-md shadow-slate-500'>
                 <div className='font-bold text-2xl'>{track.title}</div>
                 <div className='italic mb-2'> <Description text={track.description} maxLength={800}/>  </div>
-                {/* TODO: <div className='flex italic font-medium mb-4'>{track.shortDescription}</div> */}
 
                 <hr />
 
