@@ -8,10 +8,11 @@ const collapseText = (text, max_length) => {
 
 export const Description = ({text, maxLength}) => {
 
-    const [collpased, setCollapsed] = useState(false)
+    const [collpased, setCollapsed] = useState(true)
     
     const textIsTooLong = text.length > maxLength
-    if(textIsTooLong && !collpased){
+
+    if(collpased && textIsTooLong) {
         text = collapseText(text, maxLength)
     }
 
@@ -19,7 +20,7 @@ export const Description = ({text, maxLength}) => {
         <p className='m-5 italic break-words'><span className='font-bold text-xl not-italic '>Description: </span>
                 {text} 
             <button className='text-blue-400' onClick={() => setCollapsed(!collpased)} hidden={!textIsTooLong}> 
-                { collpased?"see less": "see more" }
+                { collpased?"see more": "see less" }
             </button>
         </p>
     </>
