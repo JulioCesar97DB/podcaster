@@ -1,8 +1,6 @@
 import React from 'react'
 import { Description } from './Description';
 
-const SUMMARY_MAX_LENGTH = 150;
-
 
 export const PodcastCard = ({ img, author, title, summary }) => {
 
@@ -16,7 +14,7 @@ export const PodcastCard = ({ img, author, title, summary }) => {
                     by {author}
                 </p>
                 <hr />
-                <Description text={summary} maxLength={SUMMARY_MAX_LENGTH}/>
+                <Description text={summary} maxLength={150}/>
             </div>
 
         </div>
