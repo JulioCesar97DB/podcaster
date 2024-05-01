@@ -6,9 +6,9 @@ const collapseText = (text, max_length) => {
     return text
 }
 
-export const Description = ({text, maxLength}) => {
+export const Description = ({text, maxLength, collapsed}) => {
 
-    const [collpased, setCollapsed] = useState(true)
+    const [collpased, setCollapsed] = useState(collapsed || true)
     
     const textIsTooLong = text.length > maxLength
 
