@@ -31,21 +31,24 @@ export const PodcastGrid = ({ podcastList, is_loading }) => {
 
     return (
 
-        <div className='flex flex-col'>
-            <div className='mr-60 flex flex-row-reverse mt-5'>
+        <div className=''>
+            <div className='justify-center mr-0 sm:mr-20 md:mr-20 xl:mr-20 sm:justify-center md:justify-start xl:justify-start flex flex-row-reverse mt-5'>
                 {is_loading && <div className='ml-10'>loading...</div>}
                 <input type="text" name="Filter" placeholder='Filter podcasts....' className='border border-gray-400 rounded-md pl-2' value={search} onChange={handleInputChange} />
                 <div className='mx-2 bg-sky-800 rounded-lg w-10 h-5 flex mt-0.5 items-center justify-center text-white'>{podcastListLen}</div>
             </div>
 
-            <div className='grid gap-28 md:grid-cols-4 sm:grid-cols-2 sm:mx-40  md:justify-items-center place-content-evenly md:mx-60 my-20'>
+            <div className='flex item-center justify-center h-screen p-20 sm:px-30 md:px-40 lg:px-48'>
 
-                {
-                    podcastList.map(podcast => (
-                        <PodcastCardList key={podcast.id} {...podcast} />
-                    ))
-                }
+                <div className='grid gap-y-28 gap-x-4 grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>
 
+                    {
+                        podcastList.map(podcast => (
+                            <PodcastCardList key={podcast.id} {...podcast} /> 
+                        ))
+                    }
+
+                </div>
             </div>
         </div>
 
