@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
+audio::-webkit-media-controls-panel {
+  background-color: #808080;
+}
