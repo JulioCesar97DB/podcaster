@@ -1,4 +1,7 @@
 
+import { tracksCache } from "./cache"
+
+
 export const getPodcasterList = async () => {
 
     const resp = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json')}`)
@@ -24,6 +27,8 @@ export const getPodcasterList = async () => {
 
 
 export const getTracks = async (id) => {
+    let tracks_on_mem = tracksCache.get(id)
+    if(tracks_on_mem) return tracks_on_mem
 
     const url = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${id}&media=podcast &entity=podcastEpisode&limit=20`)}`
     const resp = await fetch(url)
@@ -49,6 +54,8 @@ export const getTracks = async (id) => {
         })
 
     }
+
+    tracksCache.set(id, tracks)
 
     return tracks
 
