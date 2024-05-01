@@ -3,7 +3,7 @@ import { Navbar } from './components/Navbar';
 import { PodcastGrid } from './components/PodcastGrid';
 import { PodcastDetail } from './components/PodcastDetail';
 import { Episode } from './components/Episode';
-import { data as api } from './database/data';
+import { getPodcasterList} from './database/data';
 import { useEffect, useState } from 'react';
 
 
@@ -14,12 +14,13 @@ function App() {
 
   useEffect(() => {
 
-    api().then((data) => {
-      setPodcastList(data)
-    }).finally(()=> setLoading(false))
+    getPodcasterList()
+    .then((data) => setPodcastList(data))
+    .finally(()=> setLoading(false))
 
   }, [])
 
+  debugger
 
   return (
     <BrowserRouter>
@@ -27,7 +28,7 @@ function App() {
 
       <Routes>
 
-        <Route path='/' element={<PodcastGrid podcastList={podcastList} loading={loading}/>} />
+        <Route path='/' element={<PodcastGrid podcastList={podcastList} is_loading={loading}/>} />
 
         <Route path='podcast/:podcastID' element={<PodcastDetail />} />
 

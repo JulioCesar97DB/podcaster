@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 
+const SUMMARY_MAX_LENGTH = 150;
+
+
 export const PodcastCard = ({ img, author, title, summary }) => {
 
     const [seeMoreDescription, setSeeMoreDescription] = useState(false)
-
-
-    let description = summary.slice(0, 150);
-    if(seeMoreDescription){
-       description = summary 
+    
+    const summaryIsTooLong = summary.length > SUMMARY_MAX_LENGTH
+    if(summaryIsTooLong && !seeMoreDescription){
+        summary = summary.slice(0, SUMMARY_MAX_LENGTH)
+        summary += "..."
     }
 
     return (
@@ -21,7 +24,10 @@ export const PodcastCard = ({ img, author, title, summary }) => {
                 </p>
                 <hr />
                 <p className='m-5 italic'><span className='font-bold text-xl not-italic'>Description: </span>
-                    {description} <button className='text-blue-400' onClick={() => setSeeMoreDescription(!seeMoreDescription)} type='button'> {seeMoreDescription?"see less": "see more"}</button>
+                    {summary} 
+                <button className='text-blue-400' onClick={() => setSeeMoreDescription(!seeMoreDescription)} hidden={!summaryIsTooLong}> 
+                    { seeMoreDescription?"see less": "see more" }
+                </button>
                 </p>
             </div>
 

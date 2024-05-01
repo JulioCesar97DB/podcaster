@@ -3,7 +3,9 @@ import { PodcastCard } from './PodcastCard'
 import { useLocation } from 'react-router-dom'
 
 export const Episode = () => {
+    
     const {state:{summary, title, img, author, track}} = useLocation();
+
     return (
         <div className='flex'>
             <div>
@@ -13,7 +15,7 @@ export const Episode = () => {
             <div className='flex flex-col p-4 h-min mt-10 mr-20 shadow-md shadow-slate-500'>
                 <div className='font-bold text-2xl'>{track.title}</div>
                 <div className='italic mb-2'>{track.description}</div>
-                {/* <div className='flex italic font-medium mb-4'>This episode is sponsored by <p>Sponsor, Sponsor2</p> and <p>Sponsor3</p>.</div> */}
+                {/* TODO: <div className='flex italic font-medium mb-4'>{track.shortDescription}</div> */}
 
                 <hr />
 

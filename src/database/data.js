@@ -1,5 +1,5 @@
 
-export const data = async () => {
+export const getPodcasterList = async () => {
 
     const resp = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json')}`)
 
@@ -40,6 +40,7 @@ export const getTracks = async (id) => {
                 duration: new Date(data.trackTimeMillis).toISOString().slice(11, 19),
                 episodeUrl: data.episodeUrl,
                 description: data.description,
+                shortDescription: data.shortDescription,
                 id: data.trackId
 
             }
