@@ -27,8 +27,8 @@ export const getPodcasterList = async () => {
 
 
 export const getTracks = async (id) => {
-    let tracks_on_mem = tracksCache.get(id)
-    if(tracks_on_mem) return tracks_on_mem
+    let tracksOnMem = tracksCache.get(id)
+    if(tracksOnMem) return tracksOnMem
 
     const url = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${id}&media=podcast &entity=podcastEpisode&limit=20`)}`
     const resp = await fetch(url)
@@ -44,7 +44,7 @@ export const getTracks = async (id) => {
             return {
                 date: data.releaseDate.slice(0, 10),
                 title: data.trackName,
-                duration: new Date(data.trackTimeMillis).toISOString().slice(11, 19),
+                duration: (!isNaN(data.trackTimeMillis)) ? new Date(data.trackTimeMillis).toISOString().slice(11, 19) : null,
                 episodeUrl: data.episodeUrl,
                 description: data.description,
                 shortDescription: data.shortDescription,
