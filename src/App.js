@@ -20,8 +20,6 @@ function App() {
 
   }, [])
 
-  debugger
-
   return (
     <BrowserRouter>
       <Navbar />

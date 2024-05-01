@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { PodcastCard } from './PodcastCard'
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { getTracks } from "./../database/data"
 
 export const PodcastDetail = () => {
-
     const { state: { summary, img, title, author } } = useLocation()
 
     const { podcastID } = useParams();
 
     const [tracks, setTracks] = useState([]);
-    const [ loading, setLoading ] = useState(true)
+    const loading = useRef(true)
 
     useEffect(() => {
-        getTracks(podcastID).then(data => setTracks(data)).finally(()=> setLoading(false))
+        getTracks(podcastID).then(data => {
+            loading.current = false
+            setTracks(data)
+        })
     }, [podcastID])
 
     return (
@@ -54,7 +56,7 @@ export const PodcastDetail = () => {
 
             </div>
 
-            {loading && <div className='mr-10'>loading...</div>}
+            {loading.current && <div className='mr-10'>loading...</div>}
         </div>
     )
 }
