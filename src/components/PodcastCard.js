@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 
 const SUMMARY_MAX_LENGTH = 150;
 
+const collapseText = (summary, max_length) => {
+    summary = summary.slice(0, SUMMARY_MAX_LENGTH)
+    summary += "..."
+    return summary
+}
 
 export const PodcastCard = ({ img, author, title, summary }) => {
 
@@ -9,8 +14,7 @@ export const PodcastCard = ({ img, author, title, summary }) => {
     
     const summaryIsTooLong = summary.length > SUMMARY_MAX_LENGTH
     if(summaryIsTooLong && !seeMoreDescription){
-        summary = summary.slice(0, SUMMARY_MAX_LENGTH)
-        summary += "..."
+        summary = collapseText(summary, SUMMARY_MAX_LENGTH)
     }
 
     return (
