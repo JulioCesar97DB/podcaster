@@ -27,7 +27,7 @@ export const PodcastCard = ({ img, author, title, summary }) => {
                     by {author}
                 </p>
                 <hr />
-                <p className='m-5 italic'><span className='font-bold text-xl not-italic'>Description: </span>
+                <p className='m-5 italic break-words'><span className='font-bold text-xl not-italic '>Description: </span>
                     {summary} 
                 <button className='text-blue-400' onClick={() => setSeeMoreDescription(!seeMoreDescription)} hidden={!summaryIsTooLong}> 
                     { seeMoreDescription?"see less": "see more" }
