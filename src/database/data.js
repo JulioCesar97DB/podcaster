@@ -1,8 +1,11 @@
 
 import { tracksCache } from "./cache"
-
+import { podcastCache } from './cache'
 
 export const getPodcasterList = async () => {
+
+    let podcastOnMem = podcastCache.get();
+    if(podcastOnMem) return podcastOnMem
 
     const resp = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json')}`)
 
@@ -22,7 +25,7 @@ export const getPodcasterList = async () => {
             title: podcaster["im:name"]["label"]
         }
     })
-   
+   podcastCache.set(entries);
 }
 
 
